@@ -8,6 +8,7 @@ app.listen("3000",()=>{
     console.log("listeing to port 3000")
 })
 
+
 app.get("/", (req, res) => {
-    console.log("port is working")
+    res.status(200).send("link is working")
 })
