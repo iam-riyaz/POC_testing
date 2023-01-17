@@ -1,11 +1,15 @@
 const express =require("express")
 const axios = require("axios")
 const dotenv = require("dotenv")
-dotenv.config()
-
+const bodyParser = require("body-parser")
 const app = express()
 
+dotenv.config()
 app.use(express.json())
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json())
+
+
 
 app.listen("3000",()=>{
     console.log("listeing to port 3000")
@@ -19,6 +23,32 @@ app.get("/", (req, res) => {
 app.get("/test", (req, res) => {
     res.status(200).send("path is working")
 })
+
+
+
+
+app.get('/webhook', function(req, res) {
+    if (
+      req.query['hub.mode'] == 'subscribe' &&
+      req.query['hub.verify_token'] == process.env.CALLBACK_VERIFY_TOKEN
+    ) {
+      res.send(req.query['hub.challenge']);
+    } else {
+      res.sendStatus(400);
+    }
+  });
+  
+  app.post("/webhook", function (request, response) {
+    console.log('Incoming webhook: ' + JSON.stringify(request.body));
+    const myData=JSON.stringify(request.body)
+    response.status(200).send(myData)
+  });
+
+
+
+
+
+
 
 
 app.post("/test", (req, res) => {
