@@ -67,7 +67,7 @@ app.post("/webhook", async function (request, response) {
         },
         data: {
           messaging_product: "whatsapp",
-          to:"919399319620",
+          to:"9193993196",
           type: "text",
           text: { body: answer },
         },
