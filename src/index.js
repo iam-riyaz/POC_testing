@@ -37,12 +37,12 @@ app.get("/webhook", function (req, res) {
 
 app.post("/webhook", async function (request, response) {
   console.log("Incoming webhook: " + JSON.stringify(request.body));
-//   const myData =  (JSON.stringify(request.body));
+  const myData =  (JSON.stringify(request.body));
 
-//   const senderNumber = JSON.stringify(request.body).entry?.[0].changes?.[0].value.messages?.[0].from
-//   const messageText = JSON.stringify(request.body).entry?.[0].changes?.[0].value.messages?.[0].text.body;
-//   console.log({senderNumber});
-//   console.log({messageText});
+  const senderNumber = JSON.stringify(request.body).entry?.[0].changes?.[0].value.messages?.[0].from
+  const messageText = JSON.stringify(request.body).entry?.[0].changes?.[0].value.messages?.[0].text.body;
+  console.log({senderNumber});
+  console.log({messageText});
 
     axios({
     method: "POST",
@@ -51,7 +51,7 @@ app.post("/webhook", async function (request, response) {
       "Content-Type": "application/json",
     },
     data: {
-      text: "who is the PM of India",
+      text: messageText,
     },
   })
     .then((res) => {
@@ -67,7 +67,7 @@ app.post("/webhook", async function (request, response) {
         },
         data: {
           messaging_product: "whatsapp",
-          to:"9193993196",
+          to:senderNumber,
           type: "text",
           text: { body: answer },
         },
