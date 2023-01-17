@@ -97,7 +97,7 @@ app.post("/send_message", (req, res) => {
     },
     data: {
       messaging_product: "whatsapp",
-      to: "919399319620",
+      to: "91939931962",
       type: "text",
       text: { body: `Hello, ${req.body.name}, ${req.body.message}` },
     },
