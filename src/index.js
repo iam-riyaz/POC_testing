@@ -51,7 +51,7 @@ app.get('/webhook', function(req, res) {
 
 
 
-app.post("/test", (req, res) => {
+app.post("/send_message", (req, res) => {
     axios({
       method: "POST",
       url: `https://graph.facebook.com/v15.0/${process.env.PHONE_NUMBER_ID}/messages`,
@@ -63,7 +63,7 @@ app.post("/test", (req, res) => {
         messaging_product: "whatsapp",
         to: "919399319620",
         type: "text",
-        text: { body: "this is a custom test message v2.0.0" },
+        text: { body: `Hello, ${req.name}, ${req.message}` },
       },
     })
       .then(() => {
