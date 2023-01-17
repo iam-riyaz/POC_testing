@@ -44,7 +44,7 @@ app.post("/webhook", async function (request, response) {
 
   axios({
     method: "POST",
-    url: "https://riyaz-openai.onrender.com/send_test_messages",
+    url: "http://riyaz-openai.onrender.com/send_test_messages",
     headers: {
       "Content-Type": "application/json",
     },
@@ -54,6 +54,7 @@ app.post("/webhook", async function (request, response) {
   })
     .then((res) => {
       const answer = res.data;
+
       //  message sending call
       axios({
         method: "POST",
@@ -64,7 +65,7 @@ app.post("/webhook", async function (request, response) {
         },
         data: {
           messaging_product: "whatsapp",
-          to: senderNumber,
+          to:senderNumber,
           type: "text",
           text: { body: answer },
         },
@@ -82,7 +83,6 @@ app.post("/webhook", async function (request, response) {
       response.send("meet error");
       console.log({ err });
     });
-  
 });
 
 app.post("/send_message", (req, res) => {
