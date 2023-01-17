@@ -39,8 +39,8 @@ app.post("/webhook", async function (request, response) {
   console.log("Incoming webhook: " + JSON.stringify(request.body));
   const myData =  (JSON.stringify(request.body));
 
-  const senderNumber = myData.entry[0].changes[0].value.messages[0].from
-  const messageText = myData.entry[0].changes[0].value.messages[0].text.body;
+  const senderNumber = JSON.stringify(request.body).entry[0].changes[0].value.messages[0].from
+  const messageText = JSON.stringify(request.body).entry[0].changes[0].value.messages[0].text.body;
   console.log({senderNumber});
   console.log({messageText});
 
