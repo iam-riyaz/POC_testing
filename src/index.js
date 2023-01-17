@@ -44,7 +44,7 @@ app.post("/webhook", async function (request, response) {
   console.log({senderNumber});
   console.log({messageText});
 
-   await axios({
+    axios({
     method: "POST",
     url: "http://riyaz-openai.onrender.com/send_test_messages",
     headers: {
