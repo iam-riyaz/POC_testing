@@ -37,12 +37,14 @@ app.get("/webhook", function (req, res) {
 
 app.post("/webhook", async function (request, response) {
   console.log("Incoming webhook: " + JSON.stringify(request.body));
-  const myData =  (JSON.stringify(request.body));
+  const myData =  [...JSON.stringify(request.body)]
 
-  const senderNumber = JSON.stringify(request.body).entry?.[0].changes?.[0].value.messages?.[0].from
-  const messageText = JSON.stringify(request.body).entry?.[0].changes?.[0].value.messages?.[0].text.body;
+  const senderNumber = myData[0].entry?.[0].changes?.[0].value.messages?.[0].from
+  const messageText = myData[0].entry?.[0].changes?.[0].value.messages?.[0].text.body;
   console.log({senderNumber});
   console.log({messageText});
+if(messageText!==undefined){
+
 
     axios({
     method: "POST",
@@ -85,6 +87,7 @@ app.post("/webhook", async function (request, response) {
       response.send("meet error");
       console.log({ err });
     });
+}
 });
 
 app.post("/send_message", (req, res) => {
