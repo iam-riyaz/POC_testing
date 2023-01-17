@@ -41,6 +41,8 @@ app.post("/webhook", async function (request, response) {
 
   const senderNumber = myData.entry?.[0].changes?.[0].value.messages?.[0].from
   const messageText = myData.entry?.[0].changes?.[0].value.messages?.[0].text.body;
+  console.log({senderNumber});
+  console.log({messageText});
 
   axios({
     method: "POST",
