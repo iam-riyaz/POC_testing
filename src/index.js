@@ -37,8 +37,8 @@ app.get("/webhook", function (req, res) {
 
 app.post("/webhook", async function (request, response) {
   console.log("Incoming webhook: " + JSON.stringify(request.body));
+  console.log("Received webhook: " + request.body)
   const myData = JSON.stringify(request.body)
-
   const senderNumber = myData[0].entry?.[0].changes?.[0].value.messages?.[0].from
   const messageText = myData[0].entry?.[0].changes?.[0].value.messages?.[0].text.body;
   console.log({senderNumber});
@@ -120,7 +120,3 @@ app.post("/send_message", (req, res) => {
 // const messageText=obj.entry[0].changes[0].value.messages[0].text.body
 
 
-//   let obj={"object":"whatsapp_business_account","entry":[{"id":"103365985989006","changes":[{"value":{"messaging_product":"whatsapp","metadata":{"display_phone_number":"917605058624","phone_number_id":"102952676030954"},"contacts":[{"profile":{"name":"Riyaz Ahmad"},"wa_id":"919399319620"}],"messages":[{"from":"919399319620","id":"wamid.HBgMOTE5Mzk5MzE5NjIwFQIAEhggMTlFODM2ODZENTczQjJBMDY1RDFBRjQ2NDYzMDIzRkIA","timestamp":"1673936290","text":{"body":"Hey"},"type":"text"}]},"field":"messages"}]}]}
-
-//   const senderNumber= obj.entry?.[0]?.changes?.[0]?.value.messages?.[0]?.from
-//   console.log(senderNumber)
