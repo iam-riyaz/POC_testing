@@ -39,8 +39,9 @@ app.post("/webhook", async function (request, response) {
   console.log("Incoming webhook: " + JSON.stringify(request.body));
   console.log("Received webhook: " + request.body)
   const myData = JSON.stringify(request.body)
-  const senderNumber = myData.entry?.[0].changes?.[0].value.messages?.[0].from
-  const messageText = myData.entry?.[0].changes?.[0].value.messages?.[0].text.body;
+  const myData2={myData}
+  const senderNumber = myData2.myData.entry?.[0].changes?.[0].value.messages?.[0].from
+  const messageText = myData2.myData.entry?.[0].changes?.[0].value.messages?.[0].text.body;
   console.log({senderNumber});
   console.log({messageText});
 if(messageText!==undefined){
@@ -119,4 +120,9 @@ app.post("/send_message", (req, res) => {
 
 // const messageText=obj.entry[0].changes[0].value.messages[0].text.body
 
+let myData={"object":"whatsapp_business_account","entry":[{"id":"103365985989006","changes":[{"value":{"messaging_product":"whatsapp","metadata":{"display_phone_number":"917605058624","phone_number_id":"102952676030954"},"contacts":[{"profile":{"name":"Riyaz Ahmad"},"wa_id":"919399319620"}],"messages":[{"from":"919399319620","id":"wamid.HBgMOTE5Mzk5MzE5NjIwFQIAEhggREY4RTFFNTAzNTVDRjBFMjNBN0QxMUZCOUJBRDRDNzEA","timestamp":"1674019983","text":{"body":"Hello 👋"},"type":"text"}]},"field":"messages"}]}]}
 
+// let myData2={myData}
+// const senderNumber = myData2.myData.entry?.[0].changes?.[0].value.messages?.[0].from
+// const messageText = myData.entry?.[0].changes?.[0].value.messages?.[0].text.body;
+// console.log(senderNumber,messageText)
